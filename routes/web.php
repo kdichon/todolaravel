@@ -19,5 +19,14 @@ Route::get('/', function () {
 
 */
 
+// Route pour l'affichage de la base de données
 Route::get('/', [TodoController::class, 'index']);
-Route::post('/add', [TodoController::class, 'store'])->name('add');
+
+// Route de l'ajout d'une tâche
+Route::post('/add', [TodoController::class, 'create'])->name('add');
+
+// Route pour mettre à jour d'une tâche
+Route::get('/upd/{id}', [TodoController::class, 'update'])->name('upd');
+
+// Route pour mettre à jour d'une tâche
+Route::get('/del/{id}', [TodoController::class, 'delete'])->name('del');
