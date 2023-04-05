@@ -10,8 +10,8 @@ class TodoController extends Controller
 {
     //
     public function index(){
-        
-        return view('accueil');
+        $todos = Todo::all();
+        return view('accueil', compact('todos'));
     }
     // Enregistrement de mes données en base
     public function store(Request $request): RedirectResponse {
