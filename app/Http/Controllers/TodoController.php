@@ -10,6 +10,7 @@ class TodoController extends Controller
 {
     // Affichage le contenu de la base
     public function index(){
+        //Todo::factory()->count(15)->create();
         $todos = Todo::all();
         return view('accueil', compact('todos'));
     }
@@ -21,7 +22,9 @@ class TodoController extends Controller
      * 
      */
     public function create(Request $request): RedirectResponse {
-        $request->validate(['task' => 'required']);
+        $request->validate([
+            'task' => 'required | min:10'
+        ]);
         $todo = new Todo();
         $todo->task = $request->task;
         $todo->status = 'n';
@@ -30,6 +33,7 @@ class TodoController extends Controller
         // dd()
         //dd($request);
         return redirect('/');
+        //return view('accueil');
     }
 
     // Mise à jour d'une tâche dans la base
